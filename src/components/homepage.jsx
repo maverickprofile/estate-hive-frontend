@@ -256,7 +256,7 @@ const testimonials = [
   <div className="relative z-10 max-w-6xl mx-auto px-4 pt-[30vh] md:pt-[60vh] flex flex-col items-center justify-center h-full">
     <div className="text-center">
       <h1 className="text-3xl md:text-5xl font-bold leading-tight text-white drop-shadow-md">
-        Discover EH Verified™ <br /> Homes & Premium Rentals
+        Discover <span className='font-exo'>EH Verified™</span> <br /> Homes & Premium Rentals
       </h1>
       <p className="mt-4 text-sm md:text-base font-medium text-gray-200 drop-shadow-sm">
         <span className="block">Exclusive. Curated. Personalized.</span>

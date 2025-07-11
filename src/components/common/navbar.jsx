@@ -28,8 +28,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'backdrop-blur-md shadow-md' : ''
+      className={`fixed p-3 top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled ? ' bg-white backdrop-blur-md shadow-md' : ''
       }`}
     >
       <div className="relative max-w-[1400px] mx-auto px-4 md:px-10 py-3 flex items-center justify-center">
@@ -46,7 +46,7 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <ul
   className={`hidden md:flex space-x-7 text-[18px]  transition-colors duration-300 ${
-    isScrolled ? 'text-white' : 'text-[#2B2A6C]'
+    isScrolled ? 'text-[#2B2A6C]' : 'text-[#2B2A6C]'
   }`}
 >
 
