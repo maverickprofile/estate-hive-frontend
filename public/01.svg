@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 57.05 57.05">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2bb673;
+        font-family: Exo2-Bold, 'Exo 2';
+        font-size: 31.36px;
+        font-weight: 700;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #2bb673;
+        stroke-miterlimit: 10;
+        stroke-width: 5px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_13" data-name="Layer 13">
+    <g>
+      <text class="cls-1" transform="translate(10.9 40.93)"><tspan x="0" y="0">01</tspan></text>
+      <circle class="cls-2" cx="28.52" cy="28.52" r="26.02"/>
+    </g>
+  </g>
+</svg>

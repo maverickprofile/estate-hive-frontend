@@ -1,0 +1,51 @@
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  opacity: 1 !important;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* @keyframes scroll-listings {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll-listings {
+  animation: scroll-listings 30s linear infinite;
+} */
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.swiper-pagination-bullet {
+  background-color: #CBD5E0; /* gray-300 */
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #4F46E5 !important; /* indigo-600 */
+}
+
+/* hide scrollbar for all browsers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
