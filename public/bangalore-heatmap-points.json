@@ -1,0 +1,49 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "intensity": 5,
+        "zoneType": "High Demand"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.5946, 12.9716] 
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "intensity": 3,
+        "zoneType": "Moderate Demand"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.64, 12.98]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "intensity": 2,
+        "zoneType": "Emerging Area"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.65, 12.84] 
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "intensity": 4,
+        "zoneType": "Luxury Zone"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [77.58, 12.93] 
+      }
+    }
+  ]
+}

@@ -1,0 +1,519 @@
+import React, { useState } from 'react';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'; // Import for carousel navigation
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { motion } from 'framer-motion';
+
+const fadeInVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: 'easeOut' }
+  }
+};
+function EHCommercial() {
+  const propertyTypes = [
+    {
+      name: 'Office Spaces',
+      image: '/h05@300x-100.jpg',
+      description: 'Premium office space in Bangalore\'s business districts',
+      features: [
+        'IT Parks',
+        'Co-working ready',
+        'Furnished options',
+        'Flexible lease terms',
+      ],
+    },
+    {
+      name: 'Warehousing',
+      image: '/h06@300x-100.jpg',
+      description: 'Spacious warehouses with seamless connectivity',
+      features: [
+        '24/7 access',
+        'Loading docks',
+        'Security systems',
+        'Transportation links',
+      ],
+    },
+    {
+      name: 'Retail Spaces',
+      image: '/h07@300x-100.jpg',
+      description: 'High-footfall retail spaces for maximum visibility',
+      features: [
+        'Mall spaces',
+        'Street retail',
+        'Food courts',
+        'Anchor locations',
+      ],
+    },
+  ];
+
+  // Dummy data for Featured Commercial Properties
+  const featuredCommercialProperties = [
+    {
+      id: 1,
+      image: '/h05@300x-100.jpg', // Placeholder image
+      verified: true,
+      title: 'Modern Villa Whitefield',
+      location: 'Whitefield, Bangalore',
+      area: '3,200 sq ft',
+      bhk: '4 BHK',
+      price: '₹2.8 Cr',
+    },
+    {
+      id: 2,
+      image: '/h07@300x-100.jpg', // Placeholder image
+      verified: true,
+      title: 'Luxury Penthouse',
+      location: 'UB City, Bangalore',
+      area: '4,500 sq ft',
+      bhk: '5 BHK',
+      price: '₹5.2 Cr',
+    },
+    {
+      id: 3,
+      image: '/h11@300x-100.jpg', // Placeholder image
+      verified: true,
+      title: 'Contemporary Apartment',
+      location: 'Koramangala, Bangalore',
+      area: '2,100 sq ft',
+      bhk: '3 BHK',
+      price: '₹1.9 Cr',
+    },
+    {
+      id: 4,
+      image: '/h13@300x-100.jpg', // Placeholder image
+      verified: true,
+      title: 'Commercial Complex',
+      location: 'Electronic City, Bangalore',
+      area: '8,000 sq ft',
+      bhk: 'N/A', // For commercial, BHK might not apply
+      price: '₹12.0 Cr',
+    },
+  ];
+
+  // Dummy data for "Why Choose EH Commercial™?" benefits
+  const commercialBenefits = [
+    {
+      icon: '/verified_property.svg', // Placeholder icon path
+      title: '100% Verified Properties',
+      description: 'All commercial properties go through our EH Verified™ process',
+    },
+    {
+      icon: '/end to end.svg', // Placeholder icon path
+      title: 'End-to-End Support',
+      description: 'From search to lease signing, we handle everything',
+    },
+    {
+      icon: '/market intelligence.svg', // Placeholder icon path
+      title: 'Market Intelligence',
+      description: 'GeoHeat™ powered insights for commercial real estate',
+    },
+  ];
+
+  // Dummy data for "Our Process" steps
+  const commercialProcessSteps = [
+    {
+      number: '01',
+      color: 'border-green-500 text-green-500',
+      title: 'Consultation',
+      description: 'Understand your business requirements and budget',
+    },
+    {
+      number: '02',
+      color: 'border-red-500 text-red-500',
+      title: 'Property Matching',
+      description: 'AI-powered matching with verified commercial properties',
+    },
+    {
+      number: '03',
+      color: 'border-orange-500 text-orange-500',
+      title: 'Site Visits',
+      description: 'Arranged viewings with our commercial property experts',
+    },
+    {
+      number: '04',
+      color: 'border-green-500 text-green-500',
+      title: 'Deal Closure',
+      description: 'End-to-end support for lease negotiation and signing',
+    },
+  ];
+
+  // Swiper ref for programmatic navigation
+  const swiperRef = React.useRef(null);
+
+  return (
+    <>
+      {/* EH Commercial Hero Section */}
+      <section
+  className="relative w-full min-h-[80vh] md:min-h-[80vh] text-white flex items-center justify-center overflow-hidden"
+  style={{
+    backgroundImage: "url('/commercial_hero_bg.jpg')",
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover', // Changed to cover to fill entire width naturally
+    imageRendering: 'auto',
+  }}
+>
+  {/* Overlay for dark tint */}
+  <div className="absolute inset-0 bg-black/40 z-0"></div>
+
+  {/* Hero Content */}
+  <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+    <h1
+      className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 drop-shadow-lg"
+      style={{ fontFamily: "'Exo 2', sans-serif" }}
+    >
+      EH Commercial™
+    </h1>
+
+    <p className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-6 drop-shadow-md">
+      Premium Commercial Real Estate Solutions
+    </p>
+
+    <p className="text-base md:text-lg lg:text-xl font-medium mb-10 drop-shadow-sm text-gray-200">
+      Verified office spaces, warehouses, and retail properties with end-to-end support and tailored matching.
+    </p>
+
+    <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+      <button className="bg-[#4A3B72] hover:bg-[#3A2D5B] text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition duration-300 ease-in-out w-full sm:w-auto">
+        Explore Commercial Properties
+      </button>
+      <button className="bg-[#4A3B72] hover:bg-[#3A2D5B] text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition duration-300 ease-in-out w-full sm:w-auto">
+        List your Property
+      </button>
+    </div>
+  </div>
+</section>
+
+
+      {/* Commercial Property Types Section */}
+<section className="bg-white py-16 md:py-24 px-4">
+  <div className="max-w-7xl mx-auto">
+    {/* Section Header */}
+    <div className="text-center mb-12">
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+        Commercial <span className="text-red-600">Property Types</span>
+      </h2>
+      <p className="text-gray-600 text-lg md:text-xl">
+        From buying and selling to renting and investing, we've got every aspect of real estate covered.
+      </p>
+    </div>
+
+    <div className="flex flex-col gap-16">
+      {propertyTypes.map((type, index) => (
+        <div
+          key={index}
+          className={`flex flex-col lg:flex-row ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''} items-center gap-10`}
+        >
+          {/* 📸 Postcard Card */}
+          <div className="w-full lg:w-1/2 flex-shrink-0">
+            <div className="bg-white rounded shadow-2xl p-6 h-full flex flex-col justify-between">
+              <div className="overflow-hidden mb-4 mt-2">
+                <img
+                  src={type.image}
+                  alt={type.name}
+                  className="w-full h-100 object-cover"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = `https://placehold.co/400x300/E0E0E0/333333?text=Image+Error`;
+                  }}
+                />
+              </div>
+              <div className="px-2 pb-1 text-left">
+                <h3 className="text-lg font-bold text-gray-900 mb-1">{type.name}</h3>
+                <p className="text-md text-gray-600">{type.description}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* 📋 Feature List */}
+<div className="w-full lg:w-1/2 text-center">
+  <div className="bg-white rounded-xl p-6">
+    {type.features.map((feature, i) => (
+      <div key={i} className="text-base md:text-3xl text-gray-800 py-3">
+        {feature}
+
+        {/* Add subtle horizontal separator after each item, except the last */}
+        {i < type.features.length - 1 && (
+          <div className="my-1">
+            <div
+              className="w-full h-[6px] bg-no-repeat bg-center bg-contain"
+              style={{
+                backgroundImage: "url('/horizontal line.png')",
+              }}
+            />
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+</div>
+
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+      {/* Featured Commercial Properties Section (UPDATED WITH SWIPER) */}
+      <section className="bg-[#2A2A3F] py-16 md:py-24 px-4">
+  <div className="max-w-7xl mx-auto text-center">
+    <div className="mb-12">
+      <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
+        Featured Commercial <span className="text-red-600">Properties</span>
+      </h2>
+      <p className="text-gray-300 text-lg md:text-xl">
+        Hand-picked commercial spaces in Bangalore's prime business locations.
+      </p>
+    </div>
+
+    {/* Cards Carousel */}
+    <motion.div
+      variants={fadeInVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      transition={{ ...fadeInVariants.visible.transition, delay: 0.3 }}
+      className="relative"
+    >
+      <Swiper
+        modules={[Navigation]}
+        spaceBetween={20}
+        slidesPerView={1}
+        navigation={{
+          nextEl: '.swiper-button-next-listings',
+          prevEl: '.swiper-button-prev-listings',
+        }}
+        breakpoints={{
+          768: { slidesPerView: 2, spaceBetween: 30 },
+          1024: { slidesPerView: 3, spaceBetween: 40 },
+        }}
+        className="mySwiper listings-swiper pb-8 px-1 sm:px-4"
+      >
+        {featuredCommercialProperties.map((listing, index) => {
+          const isImageTop = index % 2 === 0;
+          return (
+            <SwiperSlide key={listing.id}>
+              <div className="flex justify-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, ease: 'easeOut' }}
+                  className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 ease-in-out flex flex-col justify-between w-[90%] md:w-full h-[500px]"
+                >
+                  {isImageTop && (
+                    <div className="relative w-full h-80 overflow-hidden">
+                      <img
+                        src={listing.image}
+                        alt={listing.title}
+                        className="w-full h-full object-cover transition-transform duration-500"
+                      />
+                      {listing.badge && (
+                        <span className="absolute top-3 left-3 bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-[12px] shadow">
+                          <span style={{ fontFamily: "'Exo 2', sans-serif" }}>
+                            {listing.badge.replace('™', '')}
+                          </span>
+                          {listing.badge.includes('™') && (
+                            <sup className="text-[0.6em]">™</sup>
+                          )}
+                        </span>
+                      )}
+                    </div>
+                  )}
+
+                  <div className="p-4 flex flex-col justify-between flex-grow text-left">
+  <div>
+    <h3 className="font-bold text-xl text-gray-900 mb-1">
+      {listing.title}
+    </h3>
+    <p className="text-md text-gray-600 mb-2">
+      {listing.location}
+    </p>
+    <div className="flex grid-col-2 gap-60 text-md text-gray-500 mb-1">
+      {/* Stack vertically if needed or align left */}
+      <span>{listing.area}</span>
+      {listing.bhk && <span>{listing.bhk}</span>}
+    </div>
+  </div>
+  <div className="flex justify-between items-center mt-auto">
+    <span className="font-bold text-[30px] text-black">
+      {listing.price}
+    </span>
+    <button className="bg-red-600 text-white text-sm font-semibold px-4 py-2 rounded-full shadow hover:bg-red-700 transition">
+      View Details
+    </button>
+  </div>
+</div>
+
+
+                  {!isImageTop && (
+                    <div className="relative w-full h-80 overflow-hidden">
+                      <img
+                        src={listing.image}
+                        alt={listing.title}
+                        className="w-full h-full object-cover transition-transform duration-500"
+                      />
+                      {listing.badge && (
+                        <span className="absolute top-3 left-3 bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-[12px] shadow">
+                          <span style={{ fontFamily: "'Exo 2', sans-serif" }}>
+                            {listing.badge.replace('™', '')}
+                          </span>
+                          {listing.badge.includes('™') && (
+                            <sup className="text-[0.6em]">™</sup>
+                          )}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </motion.div>
+              </div>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+
+      {/* Scroll Buttons */}
+      <div className="hidden md:flex">
+        <button className="swiper-button-prev-listings absolute left-[-60px] top-1/2 -translate-y-1/2 z-30 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-red-600 transition cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button className="swiper-button-next-listings absolute right-[-60px] top-1/2 -translate-y-1/2 z-30 bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-red-600 transition cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile Navigation Arrows */}
+      <div className="md:hidden flex justify-center gap-4 mt-6">
+        <button className="swiper-button-prev-listings bg-gray-800 text-white p-2 rounded-full shadow hover:bg-red-600 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button className="swiper-button-next-listings bg-gray-800 text-white p-2 rounded-full shadow hover:bg-red-600 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </motion.div>
+
+    {/* CTA Button */}
+    <div className="mt-16 text-center">
+      <button className="bg-red-600 hover:bg-red-700 text-white font-semibold text-lg px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition duration-300 ease-in-out w-full md:w-auto">
+        View All Commercial Properties
+      </button>
+    </div>
+  </div>
+</section>
+
+      <section className="bg-white py-16 md:py-24 px-4">
+  <div className="max-w-6xl mx-auto text-center">
+    {/* Section Heading */}
+    <div className="mb-12">
+      <h2 className="text-3xl md:text-6xl font-bold text-gray-800 mb-2">
+        Why Choose <span className="text-red-600" style={{ fontFamily: "'Exo 2', sans-serif" }}>EH Commercial™</span>?
+      </h2>
+      <p className="text-gray-600 text-lg md:text-xl">
+        We understand commercial real estate is complex. That's why <br className="hidden sm:inline" />
+        we've simplified the process.
+      </p>
+    </div>
+
+    {/* Benefit Blocks Grid */}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+      {commercialBenefits.map((benefit, index) => (
+        <div
+          key={index}
+          className="flex flex-col items-center text-center p-4"
+        >
+          {/* Icon with conditional grayscale */}
+          <img
+            src={benefit.icon}
+            alt={benefit.title}
+            className={`
+              h-24 w-24 mb-6 
+              ${benefit.title !== "100% Verified Properties" ? "grayscale" : ""}
+            `}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = `/verified_property@300x-8.png`;
+            }}
+          />
+
+          {/* Title */}
+          <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
+            {benefit.title}
+          </h3>
+
+          {/* Description */}
+          <p className="text-base text-gray-600">
+            {benefit.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+      {/* Our Process Section (UPDATED) */}
+      <section className="bg-gray-50 py-16 md:py-24 px-4"> {/* Light grey background for the section */}
+        <div className="max-w-6xl mx-auto text-center">
+          {/* Section Heading */}
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-6xl font-bold text-gray-800 mb-2">
+              Our <span className="text-red-600">Process</span>
+            </h2>
+            <p className="text-gray-600 text-lg md:text-xl">
+              From initial consultation to final lease signing, we guide you <br className="hidden sm:inline" />
+              through every step.
+            </p>
+          </div>
+
+          {/* Process Step Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+            {commercialProcessSteps.map((step, index) => (
+              <div
+                key={index}
+                className="
+                  bg-white rounded-xl shadow-md p-6 md:p-8 /* Adjusted shadow */
+                  flex flex-col items-center text-center
+                  transition-all duration-300 ease-in-out
+                  hover:shadow-lg /* Added hover shadow */
+                "
+              >
+                {/* Numbered Circle */}
+                <div className={`
+                  w-20 h-20 rounded-full border-2 flex items-center justify-center mb-6
+                  ${step.color} /* Dynamic border and text color */
+                  text-3xl font-bold
+                `}>
+                  {step.number}
+                </div>
+                {/* Step Title */}
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
+                  {step.title}
+                </h3>
+                {/* Step Description */}
+                <p className="text-base text-gray-600">
+                  {step.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+export default EHCommercial;
