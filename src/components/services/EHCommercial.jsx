@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'; // Import for carousel navigation
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
@@ -163,28 +163,52 @@ function EHCommercial() {
 
   {/* Hero Content */}
   <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
-    <h1
+                  <motion.h1  
+                      initial={{ opacity: 0, y: 40 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, ease: 'easeOut' }}
+                      viewport={{ once: true }}
       className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 drop-shadow-lg"
       style={{ fontFamily: "'Exo 2', sans-serif" }}
     >
       EH Commercial™
-    </h1>
+    </motion.h1>
 
-    <p className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-6 drop-shadow-md">
+                  <motion.p
+                      initial={{ opacity: 0, y: 40 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, ease: 'easeOut' }}
+                      viewport={{ once: true }}
+                      className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-6 drop-shadow-md">
       Premium Commercial Real Estate Solutions
-    </p>
+    </motion.p>
 
-    <p className="text-base md:text-lg lg:text-xl font-medium mb-10 drop-shadow-sm text-gray-200">
+                  <motion.p
+                      initial={{ opacity: 0, y: 40 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, ease: 'easeOut' }}
+                      viewport={{ once: true }}
+                      className="text-base md:text-lg lg:text-xl font-medium mb-10 drop-shadow-sm text-gray-200">
       Verified office spaces, warehouses, and retail properties with end-to-end support and tailored matching.
-    </p>
+    </motion.p>
 
     <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-      <button className="bg-[#4A3B72] hover:bg-[#3A2D5B] text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition duration-300 ease-in-out w-full sm:w-auto">
+                      <motion.button
+                          initial={{ opacity: 0, y: 40 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8, ease: 'easeOut' }}
+                          viewport={{ once: true }}
+                          className="bg-[#4A3B72] hover:bg-[#3A2D5B] text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition duration-300 ease-in-out w-full sm:w-auto">
         Explore Commercial Properties
-      </button>
-      <button className="bg-[#4A3B72] hover:bg-[#3A2D5B] text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition duration-300 ease-in-out w-full sm:w-auto">
+      </motion.button>
+                      <motion.button
+                          initial={{ opacity: 0, y: 40 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8, ease: 'easeOut' }}
+                          viewport={{ once: true }}
+                          className="bg-[#4A3B72] hover:bg-[#3A2D5B] text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition duration-300 ease-in-out w-full sm:w-auto">
         List your Property
-      </button>
+      </motion.button>
     </div>
   </div>
 </section>
@@ -195,12 +219,22 @@ function EHCommercial() {
   <div className="max-w-7xl mx-auto">
     {/* Section Header */}
     <div className="text-center mb-12">
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+                      <motion.h2
+                          initial={{ opacity: 0, y: 40 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8, ease: 'easeOut' }}
+                          viewport={{ once: true }}
+                          className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
         Commercial <span className="text-red-600">Property Types</span>
-      </h2>
-      <p className="text-gray-600 text-lg md:text-xl">
+      </motion.h2>
+                      <motion.p
+                          initial={{ opacity: 0, y: 40 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8, ease: 'easeOut' }}
+                          viewport={{ once: true }}
+                          className="text-gray-600 text-lg md:text-xl">
         From buying and selling to renting and investing, we've got every aspect of real estate covered.
-      </p>
+      </motion.p>
     </div>
 
     <div className="flex flex-col gap-16">
@@ -209,67 +243,87 @@ function EHCommercial() {
           key={index}
           className={`flex flex-col lg:flex-row ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''} items-center gap-10`}
         >
-          {/* 📸 Postcard Card */}
-          <div className="w-full lg:w-1/2 flex-shrink-0">
-            <div className="bg-white rounded shadow-2xl p-6 h-full flex flex-col justify-between">
-              <div className="overflow-hidden mb-4 mt-2">
-                <img
-                  src={type.image}
-                  alt={type.name}
-                  className="w-full h-100 object-cover"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = `https://placehold.co/400x300/E0E0E0/333333?text=Image+Error`;
-                  }}
-                />
+              <div className="w-full lg:w-1/2 flex-shrink-0">
+                  <div className="bg-white rounded-xl shadow-2xl p-6 h-full flex flex-col justify-between border border-transparent">
+                      <div className="overflow-hidden mb-4 mt-2 group relative rounded-xl">
+                          <motion.img
+                              src={type.image}
+                              alt={type.name}
+                              initial={{ scale: 1 }}
+                              whileHover={{ scale: 1.05 }}
+                              transition={{ duration: 0.8, ease: 'easeInOut' }}
+                              className="w-full h-100 object-cover rounded-xl"
+                              onError={(e) => {
+                                  e.target.onerror = null;
+                                  e.target.src = `https://placehold.co/400x300/E0E0E0/333333?text=Image+Error`;
+                              }}
+                          />
+                          {/* Gradient red border on hover */}
+                          <div className="absolute inset-0 rounded-xl border-l-[6px] border-b-[6px] border-transparent  group-hover:border-opacity-80 transition-all duration-700 ease-in-out pointer-events-none" />
+                      </div>
+
+                      <div className="px-2 pb-1 text-left">
+                          <h3 className="text-lg font-bold text-gray-900 mb-1">{type.name}</h3>
+                          <p className="text-md text-gray-600">{type.description}</p>
+                      </div>
+                  </div>
               </div>
-              <div className="px-2 pb-1 text-left">
-                <h3 className="text-lg font-bold text-gray-900 mb-1">{type.name}</h3>
-                <p className="text-md text-gray-600">{type.description}</p>
+
+              {/* 📋 Feature List */}
+              <div className="w-full lg:w-1/2 text-center">
+                  <div className="bg-white rounded-xl p-6">
+                      {type.features.map((feature, i) => (
+                          <motion.div
+                              key={i}
+                              whileHover={{ scale: 1.08, color: '#E7000B' }}
+                              transition={{ duration: 0.4, ease: 'easeInOut' }}
+                              className="text-base md:text-3xl text-gray-800 py-3 cursor-default"
+                          >
+                              {feature}
+
+                              {/* Horizontal line */}
+                              {i < type.features.length - 1 && (
+                                  <div className="my-1">
+                                      <div
+                                          className="w-full h-[6px] bg-no-repeat bg-center bg-contain"
+                                          style={{
+                                              backgroundImage: "url('/horizontal line.png')",
+                                          }}
+                                      />
+                                  </div>
+                              )}
+                          </motion.div>
+                      ))}
+                  </div>
               </div>
-            </div>
+
           </div>
-
-          {/* 📋 Feature List */}
-<div className="w-full lg:w-1/2 text-center">
-  <div className="bg-white rounded-xl p-6">
-    {type.features.map((feature, i) => (
-      <div key={i} className="text-base md:text-3xl text-gray-800 py-3">
-        {feature}
-
-        {/* Add subtle horizontal separator after each item, except the last */}
-        {i < type.features.length - 1 && (
-          <div className="my-1">
-            <div
-              className="w-full h-[6px] bg-no-repeat bg-center bg-contain"
-              style={{
-                backgroundImage: "url('/horizontal line.png')",
-              }}
-            />
-          </div>
-        )}
-      </div>
-    ))}
-  </div>
-</div>
-
-        </div>
       ))}
-    </div>
-  </div>
-</section>
+                  </div>
+              </div>
+          </section> 
 
 
       {/* Featured Commercial Properties Section (UPDATED WITH SWIPER) */}
       <section className="bg-[#2A2A3F] py-16 md:py-24 px-4">
   <div className="max-w-7xl mx-auto text-center">
     <div className="mb-12">
-      <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
+                      <motion.h2
+                          initial={{ opacity: 0, y: 40 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8, ease: 'easeOut' }}
+                          viewport={{ once: true }}
+                          className="text-3xl md:text-4xl font-bold text-white mb-2">
         Featured Commercial <span className="text-red-600">Properties</span>
-      </h2>
-      <p className="text-gray-300 text-lg md:text-xl">
+      </motion.h2>
+                      <motion.p
+                          initial={{ opacity: 0, y: 40 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8, ease: 'easeOut' }}
+                          viewport={{ once: true }}
+                          className="text-gray-300 text-lg md:text-xl">
         Hand-picked commercial spaces in Bangalore's prime business locations.
-      </p>
+      </motion.p>
     </div>
 
     {/* Cards Carousel */}
@@ -408,75 +462,108 @@ function EHCommercial() {
 
     {/* CTA Button */}
     <div className="mt-16 text-center">
-      <button className="bg-red-600 hover:bg-red-700 text-white font-semibold text-lg px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition duration-300 ease-in-out w-full md:w-auto">
+                      <motion.button
+                          initial={{ opacity: 0, y: 40 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8, ease: 'easeOut' }}
+                          viewport={{ once: true }}
+                          className="bg-red-600 hover:bg-red-700 text-white font-semibold text-lg px-10 py-4 rounded-full shadow-lg hover:shadow-xl transition duration-300 ease-in-out w-full md:w-auto">
         View All Commercial Properties
-      </button>
+      </motion.button>
     </div>
   </div>
 </section>
 
-      <section className="bg-white py-16 md:py-24 px-4">
-  <div className="max-w-6xl mx-auto text-center">
-    {/* Section Heading */}
-    <div className="mb-12">
-      <h2 className="text-3xl md:text-6xl font-bold text-gray-800 mb-2">
-        Why Choose <span className="text-red-600" style={{ fontFamily: "'Exo 2', sans-serif" }}>EH Commercial™</span>?
-      </h2>
-      <p className="text-gray-600 text-lg md:text-xl">
-        We understand commercial real estate is complex. That's why <br className="hidden sm:inline" />
-        we've simplified the process.
-      </p>
-    </div>
+          <section className="bg-white py-16 md:py-24 px-4">
+              <div className="max-w-6xl mx-auto text-center">
+                  {/* Section Heading */}
+                  <div className="mb-16">
+                      <motion.h2
+                          initial={{ opacity: 0, y: 50 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8 }}
+                          viewport={{ once: true }}
+                          className="text-3xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-gray-800 via-red-600 to-gray-900 bg-clip-text text-transparent tracking-tight"
+                          style={{ fontFamily: "'Exo 2', sans-serif" }}
+                      >
+                          Why Choose <span className="text-red-600">EH Commercial™</span><span className="text-gray-800">?</span>
+                      </motion.h2>
 
-    {/* Benefit Blocks Grid */}
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-      {commercialBenefits.map((benefit, index) => (
-        <div
-          key={index}
-          className="flex flex-col items-center text-center p-4"
-        >
-          {/* Icon with conditional grayscale */}
-          <img
-            src={benefit.icon}
-            alt={benefit.title}
-            className={`
-              h-24 w-24 mb-6 
-              ${benefit.title !== "100% Verified Properties" ? "grayscale" : ""}
-            `}
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = `/verified_property@300x-8.png`;
-            }}
-          />
+                      <motion.p
+                          initial={{ opacity: 0, y: 40 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6 }}
+                          viewport={{ once: true }}
+                          className="text-gray-600 text-lg md:text-xl leading-relaxed"
+                      >
+                          We understand commercial real estate is complex. That's why <br className="hidden sm:inline" />
+                          we've simplified the process.
+                      </motion.p>
+                  </div>
 
-          {/* Title */}
-          <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
-            {benefit.title}
-          </h3>
+                  {/* Benefit Cards */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-4 md:px-0">
+                      {commercialBenefits.map((benefit, index) => (
+                          <motion.div
+                              key={index}
+                              initial={{ opacity: 0, y: 30 }}
+                              whileInView={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.5, delay: index * 0.2 }}
+                              viewport={{ once: true }}
+                              className="bg-white border rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 p-6 text-center hover:scale-[1.03]"
+                          >
+                              {/* Icon */}
+                              <div className="flex justify-center mb-4">
+                                  <img
+                                      src={benefit.icon}
+                                      alt={benefit.title}
+                                      className={`h-20 w-20 transition-all duration-500 ${benefit.title !== "100% Verified Properties" ? "grayscale" : ""
+                                          } hover:grayscale-0 hover:scale-110`}
+                                      onError={(e) => {
+                                          e.target.onerror = null;
+                                          e.target.src = `/verified_property@300x-8.png`;
+                                      }}
+                                  />
+                              </div>
 
-          {/* Description */}
-          <p className="text-base text-gray-600">
-            {benefit.description}
-          </p>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
+                              {/* Title */}
+                              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
+                                  {benefit.title}
+                              </h3>
 
+                              {/* Description */}
+                              <p className="text-md text-gray-600 leading-relaxed">
+                                  {benefit.description}
+                              </p>
+                          </motion.div>
+                      ))}
+                  </div>
+              </div>
+          </section>
 
       {/* Our Process Section (UPDATED) */}
       <section className="bg-gray-50 py-16 md:py-24 px-4"> {/* Light grey background for the section */}
         <div className="max-w-6xl mx-auto text-center">
           {/* Section Heading */}
           <div className="mb-12">
-            <h2 className="text-3xl md:text-6xl font-bold text-gray-800 mb-2">
+                      <motion.h2
+                          initial={{ opacity: 0, y: 40 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8, ease: 'easeOut' }}
+                          viewport={{ once: true }}
+                          className="text-3xl md:text-6xl font-bold text-gray-800 mb-2">
               Our <span className="text-red-600">Process</span>
-            </h2>
-            <p className="text-gray-600 text-lg md:text-xl">
+            </motion.h2>
+                      <motion.p
+                          initial={{ opacity: 0, y: 40 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8, ease: 'easeOut' }}
+                          viewport={{ once: true }}
+            
+            className="text-gray-600 text-lg md:text-xl">
               From initial consultation to final lease signing, we guide you <br className="hidden sm:inline" />
               through every step.
-            </p>
+            </motion.p>
           </div>
 
           {/* Process Step Cards Grid */}
