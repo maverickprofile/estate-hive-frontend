@@ -63,7 +63,8 @@ const VerifiedExclusives = () => {
     const fetchListings = async () => {
       const { data, error } = await supabase
         .from('properties')
-        .select('id, title, location, price, category, bhk, area, badge, image_urls, status')
+        .select('id, title, location, price, category, bhk, area, badge, image_urls')
+        .eq('status', 'active')
         .order('created_at', { ascending: false });
 
       if (error) {
@@ -71,19 +72,17 @@ const VerifiedExclusives = () => {
         return;
       }
 
-      const formatted = (data || [])
-        .filter((item) => item.status === 'active')
-        .map((item) => ({
-          id: item.id,
-          title: item.title,
-          location: item.location,
-          price: item.price,
-          category: item.category,
-          bhk: item.bhk,
-          area: item.area,
-          badge: item.badge || '',
-          image: item.image_urls?.[0] || '',
-        }));
+      const formatted = (data || []).map((item) => ({
+        id: item.id,
+        title: item.title,
+        location: item.location,
+        price: item.price,
+        category: item.category,
+        bhk: item.bhk,
+        area: item.area,
+        badge: item.badge || '',
+        image: item.image_urls?.[0] || '',
+      }));
 
       setListings(formatted);
     };
