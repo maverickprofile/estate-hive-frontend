@@ -1,34 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import './AuthPage.css';
 
-import ResetPassword from './pages/ResetPassword';
-
 import Navbar from './components/common/navbar';
 import Footer from './components/common/footer';
-import Testimonials from './components/Testimonials';
 
-
-import HomePage from './components/homepage';
-import FeaturedListings from './components/FeaturedListings';
-
-import AIAgentEcosystem from './components/technologies/AIAgentEcosystem';
-import Blog from './components/Blog';
-import EHAccelerate from './components/services/EHAccelerate';
-import EHDesign from './components/services/EHDesign';
-import EHLiving from './components/services/EHLiving';
-import EHRank from './components/services/EHRank';
-import EHSignature from './components/services/EHSignature';
-import EHStay from './components/services/EHStay';
-import EHCommercial from './components/services/EHCommercial';
-import EHGeoHeat from './components/technologies/EHGeoHeat';
-import SmartMatchEngine from './components/technologies/SmartMatchEngine';
-import Career from './components/careers';
-import Autherization from './components/AuthPage';
-import ContactUs from './components/ContactUs';
-import Confirmed from './pages/Confirmed'; // adjust the path if needed
-import UserProfile from './components/UserProfile'; // Import UserProfile component
+const ResetPassword = lazy(() => import('./pages/ResetPassword'));
+const HomePage = lazy(() => import('./components/homepage'));
+const AIAgentEcosystem = lazy(() => import('./components/technologies/AIAgentEcosystem'));
+const Blog = lazy(() => import('./components/Blog'));
+const EHAccelerate = lazy(() => import('./components/services/EHAccelerate'));
+const EHDesign = lazy(() => import('./components/services/EHDesign'));
+const EHLiving = lazy(() => import('./components/services/EHLiving'));
+const EHRank = lazy(() => import('./components/services/EHRank'));
+const EHSignature = lazy(() => import('./components/services/EHSignature'));
+const EHStay = lazy(() => import('./components/services/EHStay'));
+const EHCommercial = lazy(() => import('./components/services/EHCommercial'));
+const EHGeoHeat = lazy(() => import('./components/technologies/EHGeoHeat'));
+const SmartMatchEngine = lazy(() => import('./components/technologies/SmartMatchEngine'));
+const Career = lazy(() => import('./components/careers'));
+const Autherization = lazy(() => import('./components/AuthPage'));
+const ContactUs = lazy(() => import('./components/ContactUs'));
+const Confirmed = lazy(() => import('./pages/Confirmed'));
+const UserProfile = lazy(() => import('./components/UserProfile'));
 
 
 
@@ -54,9 +49,10 @@ const Layout = () => {
             {!hideNavFooter && <Navbar />}
 
             <main className="flex-grow">
+                <Suspense fallback={<div className="p-4 text-center">Loading...</div>}>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                   
+
                     <Route path="/confirmed" element={<Confirmed />} />
                     <Route path="/auth-reset" element={<ResetPassword />} />
                     <Route path="/profile" element={<UserProfile />} />
@@ -76,6 +72,7 @@ const Layout = () => {
                     <Route path="/auth" element={<Autherization />} />
                     <Route path="/contact-us" element={<ContactUs />} />
                 </Routes>
+                </Suspense>
             </main>
 
             {!hideNavFooter && <Footer />}
