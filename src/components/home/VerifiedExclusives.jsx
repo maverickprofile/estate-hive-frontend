@@ -64,14 +64,15 @@ const VerifiedExclusives = () => {
       const { data, error } = await supabase
         .from('properties')
         .select('id, title, location, price, category, bhk, area, badge, image_urls')
-        .eq('status', 'active');
+        .eq('status', 'active')
+        .order('created_at', { ascending: false });
 
       if (error) {
         console.error('Error fetching properties:', error);
         return;
       }
 
-      const formatted = data.map((item) => ({
+      const formatted = (data || []).map((item) => ({
         id: item.id,
         title: item.title,
         location: item.location,
