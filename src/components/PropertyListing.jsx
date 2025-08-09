@@ -17,6 +17,7 @@ const PropertyListing = ({ listings }) => {
 
     const filteredListings = useMemo(() => {
         const matching = listings.filter((listing) => listing.category === activeTab);
+        if (matching.length === 0) return [];
         const repeated = [];
         while (repeated.length < 12) {
             repeated.push(...matching);
