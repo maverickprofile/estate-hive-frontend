@@ -1,5 +1,5 @@
 import React, { useEffect, Suspense, lazy } from 'react';
-import { HashRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import './App.css';
 import './AuthPage.css';
 
@@ -83,10 +83,10 @@ const Layout = () => {
 
 function App() {
     return (
-        <Router>
+        <HashRouter>
             <ScrollToTop />
             <Layout />
-        </Router>
+        </HashRouter>
     );
 }
 
