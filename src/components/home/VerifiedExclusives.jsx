@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion as Motion } from 'framer-motion';
 import PropertyListing from '../PropertyListing';
-import listings from '../../data/listings';
+import { supabase } from '../../util/supabaseClient';
 
 const features = [
   {
@@ -57,6 +57,38 @@ const cardVariants = {
 };
 
 const VerifiedExclusives = () => {
+  const [listings, setListings] = useState([]);
+
+  useEffect(() => {
+    const fetchListings = async () => {
+      const { data, error } = await supabase
+        .from('properties')
+        .select('id, title, location, price, category, bhk, area, badge, image_urls')
+        .eq('status', 'active');
+
+      if (error) {
+        console.error('Error fetching properties:', error);
+        return;
+      }
+
+      const formatted = data.map((item) => ({
+        id: item.id,
+        title: item.title,
+        location: item.location,
+        price: item.price,
+        category: item.category,
+        bhk: item.bhk,
+        area: item.area,
+        badge: item.badge || '',
+        image: item.image_urls?.[0] || '',
+      }));
+
+      setListings(formatted);
+    };
+
+    fetchListings();
+  }, []);
+
   return (
     <>
       <section className="bg-[#05051f] text-white py-20 px-4">
