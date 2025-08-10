@@ -1,31 +1,19 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiArrowRight } from "react-icons/hi";
+import properties from "../data/properties";
 
 const tabs = ["For Sale", "For Rent", "Luxury Rentals", "EH Signature™"];
 
-const cardData = {
-  "For Sale": [
-    { title: "Modern Villa", location: "Hyderabad", price: "₹2.4 Cr" },
-    { title: "Urban Apartment", location: "Mumbai", price: "₹1.2 Cr" },
-    { title: "Lake House", location: "Bangalore", price: "₹3.1 Cr" },
-  ],
-  "For Rent": [
-    { title: "Studio Apartment", location: "Delhi", price: "₹25K/mo" },
-    { title: "2BHK Flat", location: "Pune", price: "₹32K/mo" },
-    { title: "Cozy Condo", location: "Chennai", price: "₹28K/mo" },
-  ],
-  "Luxury Rentals": [
-    { title: "Sea View Penthouse", location: "Goa", price: "₹1.2L/mo" },
-    { title: "Smart Mansion", location: "Hyderabad", price: "₹3L/mo" },
-    { title: "Skyline Duplex", location: "Mumbai", price: "₹2.5L/mo" },
-  ],
-  "EH Signature™": [
-    { title: "Signature Bungalow", location: "Jaipur", price: "₹4.5 Cr" },
-    { title: "Elite Tower", location: "Noida", price: "₹3.3 Cr" },
-    { title: "Palace Estate", location: "Udaipur", price: "₹5.1 Cr" },
-  ],
-};
+// Build card data from the property list so each tab shows the first few
+// matching entries.
+const cardData = tabs.reduce((acc, tab) => {
+  acc[tab] = properties
+    .filter((p) => p.category === tab)
+    .slice(0, 3)
+    .map((p) => ({ title: p.name, location: p.location, price: p.price }));
+  return acc;
+}, {});
 
 export default function FeaturedListings() {
   const [activeTab, setActiveTab] = useState("For Sale");

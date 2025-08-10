@@ -24,6 +24,7 @@ const Autherization = lazy(() => import('./components/AuthPage'));
 const ContactUs = lazy(() => import('./components/ContactUs'));
 const Confirmed = lazy(() => import('./pages/Confirmed'));
 const UserProfile = lazy(() => import('./components/UserProfile'));
+const AllProperties = lazy(() => import('./pages/AllProperties'));
 
 
 
@@ -71,6 +72,7 @@ const Layout = () => {
                     <Route path="/careers" element={<Career />} />
                     <Route path="/auth" element={<Autherization />} />
                     <Route path="/contact-us" element={<ContactUs />} />
+                    <Route path="/properties" element={<AllProperties />} />
                 </Routes>
                 </Suspense>
             </main>
