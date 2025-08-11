@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -7,7 +7,7 @@ import 'swiper/css/navigation';
 
 //SwiperCore.use([Navigation]);
 
-const PropertyListing = ({ listings }) => {
+const PropertyListing = ({ listings = [] }) => {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     const [currentSlide, setCurrentSlide] = useState(0);
     const swiperRef = useRef(null);
@@ -16,7 +16,8 @@ const PropertyListing = ({ listings }) => {
     const activeTab = tabOptions[activeTabIndex];
 
     const filteredListings = useMemo(() => {
-        const matching = listings.filter((listing) => listing.category === activeTab);
+        const source = Array.isArray(listings) ? listings : [];
+        const matching = source.filter((listing) => listing.category === activeTab);
         if (matching.length === 0) return [];
         const repeated = [];
         while (repeated.length < 12) {
@@ -67,7 +68,7 @@ const PropertyListing = ({ listings }) => {
         <section className="relative bg-white py-20 px-4 z-30">
             <div className="max-w-7xl mx-auto relative z-20">
                 {/* Tabs */}
-                <motion.div
+                <Motion.div
                     variants={fadeInVariants}
                     initial="hidden"
                     whileInView="visible"
@@ -106,34 +107,37 @@ const PropertyListing = ({ listings }) => {
                             );
                         })}
                     </div>
-                </motion.div>
+                </Motion.div>
 
                 {/* Carousel */}
-                <motion.div
+                <Motion.div
                     variants={fadeInVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
                 >
-                    <Swiper
-                        ref={swiperRef}
-                        key={activeTabIndex}
-                        modules={[Navigation]}
-                        spaceBetween={20}
-                        slidesPerView={1}
-                        breakpoints={{
-                            768: { slidesPerView: 2 },
-                            1024: { slidesPerView: 3 },
-                        }}
-                        onSlideChange={(swiper) => setCurrentSlide(swiper.activeIndex)}
-                        className="mySwiper listings-swiper pb-8 px-1 sm:px-4"
-                    >
-                        {filteredListings.map((listing, index) => {
+                    {filteredListings.length === 0 ? (
+                        <p className="text-center text-gray-500">No listings available.</p>
+                    ) : (
+                        <Swiper
+                            ref={swiperRef}
+                            key={activeTabIndex}
+                            modules={[Navigation]}
+                            spaceBetween={20}
+                            slidesPerView={1}
+                            breakpoints={{
+                                768: { slidesPerView: 2 },
+                                1024: { slidesPerView: 3 },
+                            }}
+                            onSlideChange={(swiper) => setCurrentSlide(swiper.activeIndex)}
+                            className="mySwiper listings-swiper pb-8 px-1 sm:px-4"
+                        >
+                            {filteredListings.map((listing, index) => {
                             const isImageTop = index % 2 === 0;
                             return (
                                 <SwiperSlide key={`${listing.id}-${index}`}>
                                     <div className="flex justify-center px-2 m-1">
-                                        <motion.div
+                                        <Motion.div
                                             initial={{ opacity: 0, y: 50 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -209,12 +213,13 @@ const PropertyListing = ({ listings }) => {
                                                     </button>
                                                 </div>
                                             )}
-                                        </motion.div>
+                                        </Motion.div>
                                     </div>
                                 </SwiperSlide>
                             );
                         })}
-                    </Swiper>
+                        </Swiper>
+                    )}
 
                     {/* Navigation Arrows */}
                     <div className="flex justify-center gap-6 mt-6 md:hidden">
@@ -243,7 +248,7 @@ const PropertyListing = ({ listings }) => {
                             </svg>
                         </div>
                     </div>
-                </motion.div>
+                </Motion.div>
             </div>
         </section>
     );
