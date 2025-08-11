@@ -68,7 +68,7 @@ const VerifiedExclusives = () => {
     bhk: item.type,
     area: '',
     badge: item.category,
-    image: 'https://via.placeholder.com/400x300',
+    image: item.image,
   }));
 
   return (
