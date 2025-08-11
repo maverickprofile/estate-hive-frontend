@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion as Motion } from 'framer-motion';
 import PropertyListing from '../PropertyListing';
-import { supabase } from '../../util/supabaseClient';
+import { Link } from 'react-router-dom';
+import properties from '../../data/properties';
 
 const features = [
   {
@@ -57,38 +58,18 @@ const cardVariants = {
 };
 
 const VerifiedExclusives = () => {
-  const [listings, setListings] = useState([]);
-
-  useEffect(() => {
-    const fetchListings = async () => {
-      const { data, error } = await supabase
-        .from('properties')
-        .select('id, title, location, price, category, bhk, area, badge, image_urls')
-        .eq('status', 'active')
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        console.error('Error fetching properties:', error);
-        return;
-      }
-
-      const formatted = (data || []).map((item) => ({
-        id: item.id,
-        title: item.title,
-        location: item.location,
-        price: item.price,
-        category: item.category,
-        bhk: item.bhk,
-        area: item.area,
-        badge: item.badge || '',
-        image: item.image_urls?.[0] || '',
-      }));
-
-      setListings(formatted);
-    };
-
-    fetchListings();
-  }, []);
+  // Transform static property data into the shape expected by PropertyListing
+  const listings = properties.map((item, index) => ({
+    id: index + 1,
+    title: item.name,
+    location: item.location,
+    price: item.price,
+    category: item.category,
+    bhk: item.type,
+    area: '',
+    badge: item.category,
+    image: item.image,
+  }));
 
   return (
     <>
@@ -183,9 +164,12 @@ const VerifiedExclusives = () => {
         transition={{ ...fadeInVariants.visible.transition, delay: 0.5 }}
         className="text-center mt-20 z-30"
       >
-        <button className="bg-[#040449] text-white font-semibold text-md px-6 mb-15 py-3 rounded-[12px] shadow-lg hover:bg-red-700 transition duration-300">
+        <Link
+          to="/properties"
+          className="inline-block bg-[#040449] text-white font-semibold text-md px-6 mb-15 py-3 rounded-[12px] shadow-lg hover:bg-red-700 transition duration-300"
+        >
           Browse All <span style={{ fontFamily: "'Exo 2', sans-serif" }}>EH Verified<span style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontSize: '0.75em', verticalAlign: 'super', marginLeft: '2px' }}>™</span></span> Listings
-        </button>
+        </Link>
       </Motion.div>
     </>
   );
