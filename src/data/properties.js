@@ -16,7 +16,7 @@ const data = [
   { name: "Birla Trimaya Phase 3", type: "2/3/4 BHK", location: "Devanahalli", price: "1.12 - 3.16 Cr", phone: "", category: "For Sale" },
   { name: "Arvind The Park", type: "Plot", location: "Devanahalli", price: "80.65 L - 1.32 Cr", phone: "", category: "For Sale" },
   { name: "Earthsong by Manyata", type: "Plot", location: "Devanahalli", price: "40 L - 6.33 Cr", phone: "", category: "For Sale" },
-  { name: "The Seceret Lake", type: "Plot", location: "Devanahalli", price: "72 L - 1.92 Cr", phone: "", category: "For Sale" },
+  { name: "The Secret Lake", type: "Plot", location: "Devanahalli", price: "72 L - 1.92 Cr", phone: "", category: "For Sale" },
   { name: "Vagmine Water Homes", type: "4 BHK", location: "Devanahalli", price: "4.5 Cr", phone: "", category: "For Sale" },
   { name: "Brigade Oasis", type: "", location: "Devanahalli", price: "90 L - 1.8 Cr", phone: "", category: "For Sale" },
   { name: "Mersuri Antelopes", type: "4 BHK", location: "Devanahalli", price: "3.98 - 4.34 Cr", phone: "", category: "For Sale" },

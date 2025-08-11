@@ -50,7 +50,8 @@ export default function AllProperties() {
         const term = search.toLowerCase();
         const matchesSearch =
           p.name.toLowerCase().includes(term) ||
-          p.location.toLowerCase().includes(term);
+          p.location.toLowerCase().includes(term) ||
+          (p.phone || '').toLowerCase().includes(term);
         const matchesCategory = category === 'All' || p.category === category;
         const matchesLocation = location === 'All' || p.location === location;
         const matchesPrice =
