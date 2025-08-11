@@ -1,4 +1,13 @@
-export default [
+const images = [
+  "https://estatehive.in/h02@300x-100.jpg",
+  "https://estatehive.in/h04@300x-100.jpg",
+  "https://estatehive.in/h11@300x-100.jpg",
+  "https://estatehive.in/h05@300x-100.jpg",
+  "https://estatehive.in/h03@300x-100.jpg",
+  "https://estatehive.in/h01@300x-100.jpg",
+];
+
+const data = [
   { name: "Konig Villas North County", type: "4 Bhk Villas", location: "Devanahalli", price: "2.46 - 3.21 Cr", phone: "8971492601", category: "For Sale" },
   { name: "Barca At Godrej MSR City", type: "2/3 Bhk Apartment", location: "Devanahalli", price: "1.3 - 1.89 Cr", phone: "", category: "For Sale" },
   { name: "Hybenden Clifton", type: "2/3 Bhk", location: "Devanahalli", price: "93.07 L - 1.64 Cr", phone: "", category: "For Sale" },
@@ -51,3 +60,5 @@ export default [
   { name: "Living Walls True North", type: "3/4 BHK", location: "Hennur Road", price: "2.11 Cr", phone: "", category: "EH Signature™" },
   { name: "Mantri Webcity", type: "3 BHK", location: "Hennur Main Road", price: "1.85 Cr", phone: "", category: "EH Signature™" },
 ];
+
+export default data.map((p, i) => ({ ...p, image: images[i % images.length] }));
