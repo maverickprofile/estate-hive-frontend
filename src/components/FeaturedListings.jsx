@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion as Motion, AnimatePresence } from "framer-motion";
 import { HiArrowRight } from "react-icons/hi";
 import properties from "../data/properties";
 
@@ -61,35 +61,35 @@ export default function FeaturedListings() {
         ))}
       </div>
 
-      <div className="overflow-hidden">
-        <AnimatePresence custom={direction} mode="wait">
-          <motion.div
-            key={activeTab}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{ duration: 0.5 }}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
-          >
-            {cardData[activeTab].map((card, index) => (
-              <motion.div
-                key={index}
-                className="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-all relative group cursor-pointer"
-                whileHover={{ scale: 1.03 }}
-              >
-                <h3 className="text-xl font-semibold mb-1">{card.title}</h3>
-                <p className="text-gray-500">{card.location}</p>
-                <p className="text-indigo-600 font-bold mt-3">{card.price}</p>
-                <div className="absolute bottom-4 right-4 text-indigo-600 group-hover:translate-x-1 transition-transform">
-                  <HiArrowRight size={24} />
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
-      </div>
+        <div className="overflow-hidden">
+          <AnimatePresence custom={direction} mode="wait">
+            <Motion.div
+              key={activeTab}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.5 }}
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+            >
+              {cardData[activeTab].map((card, index) => (
+                <Motion.div
+                  key={index}
+                  className="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-all relative group cursor-pointer"
+                  whileHover={{ scale: 1.03 }}
+                >
+                  <h3 className="text-xl font-semibold mb-1">{card.title}</h3>
+                  <p className="text-gray-500">{card.location}</p>
+                  <p className="text-indigo-600 font-bold mt-3">{card.price}</p>
+                  <div className="absolute bottom-4 right-4 text-indigo-600 group-hover:translate-x-1 transition-transform">
+                    <HiArrowRight size={24} />
+                  </div>
+                </Motion.div>
+              ))}
+            </Motion.div>
+          </AnimatePresence>
+        </div>
     </div>
   );
 }
