@@ -181,9 +181,6 @@ export default function AllProperties() {
                 <p className="text-sm text-gray-600 mb-1">{p.type}</p>
                 <p className="text-gray-500 mb-1">{p.location}</p>
                 <p className="text-indigo-600 font-bold mb-1">{p.price}</p>
-                {p.phone && (
-                  <p className="text-sm text-gray-500">Phone: {p.phone}</p>
-                )}
               </div>
             </div>
           ))}
